@@ -12,6 +12,11 @@ const UserSchema = yup.object({
     .min(3, "El apellido debe tener mínimo 3 carácteres")
     .max(10, "El apellido debe tener máximo 10 carácteres")
     .required("El apellido es obligatorio"),
+    
+  email: yup
+    .string()
+    .email("El correo debe ser válido")
+    .required("El correo es obligatorio"),
 });
 
 export { UserSchema };

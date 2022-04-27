@@ -2,6 +2,7 @@ import { Button, Input } from "@geist-ui/core";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserSchema } from "./helpers/schemas";
+import ErrorText from "./Components/TextError";
 
 function App() {
   const { register, handleSubmit, formState } = useForm({
@@ -24,10 +25,14 @@ function App() {
             Nombre
           </label>
           <Input
-            placeholder="Carlos"
             name="name"
             id="name"
-            {...register("name", { required: true, minLength: 3 })}
+            {...register("name")}
+          />
+          <ErrorText
+            className="mt-2"
+            text={errors.name?.message}
+            isVisible={!!errors.name?.message}
           />
         </div>
 
@@ -36,10 +41,31 @@ function App() {
             Apellido
           </label>
           <Input
-            placeholder="Carlos"
             id="surname"
             name="surname"
-            {...register("surname", { required: true })}
+            {...register("surname")}
+          />
+          <ErrorText
+            className="mt-2"
+            text={errors.surname?.message}
+            isVisible={!!errors.surname?.message}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="email" className="d-block mb-1">
+            E-mail
+          </label>
+          <Input
+            id="email"
+            name="email"
+            htmlType="email"
+            {...register("email")}
+          />
+          <ErrorText
+            className="mt-2"
+            text={errors.email?.message}
+            isVisible={!!errors.email?.message}
           />
         </div>
 
