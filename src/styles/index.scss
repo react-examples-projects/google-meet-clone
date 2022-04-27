@@ -1,4 +1,18 @@
-$mt-containers: 6rem;
+$mt-containers: 5rem;
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.267);
+  border-radius: 5px;
+}
 
 * {
   margin: 0;
@@ -15,6 +29,10 @@ body {
   font-size: 16px;
 }
 
+.text-muted {
+  color: #e2e8f0 !important;
+}
+
 .container {
   max-width: 990px;
   width: 100%;
@@ -29,7 +47,7 @@ body {
 }
 
 .bg-register {
-  background-image:  linear-gradient(90deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.514)), url("../../public/images/register.jpg");
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.514)), url("../../public/images/register.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -38,19 +56,24 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-y: auto;
 
 
   >form {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     margin: 0 auto;
     margin-top: $mt-containers;
   }
 }
 
 .container-hero {
-  margin-top: $mt-containers + 2rem;
+  $px: 3rem;
+
+  margin-top: $mt-containers + 3rem;
   max-width: 600px;
   color: #fff;
   padding-top: 5rem;
+  padding-left: $px;
+  padding-right: $px;
 }
