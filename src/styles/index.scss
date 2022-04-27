@@ -1,7 +1,14 @@
+$mt-containers: 6rem;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box !important;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -14,4 +21,36 @@ body {
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.full-vp {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.bg-register {
+  background-image:  linear-gradient(90deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.514)), url("../../public/images/register.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container-form-register {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
+  >form {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: $mt-containers;
+  }
+}
+
+.container-hero {
+  margin-top: $mt-containers + 2rem;
+  max-width: 600px;
+  color: #fff;
+  padding-top: 5rem;
 }
