@@ -36,12 +36,12 @@ const UserRegistrationSchema = yup.object({
     .string()
     .trim()
     .matches(
-      /^(0414|0424|0412|0416|0426)[-][0-9]{7}$/g,
+      /^(0414|0424|0412|0416|0426)[0-9]{7}$/g,
       "Debe proporcionar un télefono válido"
     )
 
-    .min(10, "El teléfono movil debe tener mínimo 10 números")
-    .max(10, "El teléfono movil debe tener máximo 10 números")
+    .min(11, "El teléfono movil debe tener mínimo 10 números")
+    .max(11, "El teléfono movil debe tener máximo 10 números")
     .required("El teléfono movil es obligatorio"),
 
   telephone: yup
