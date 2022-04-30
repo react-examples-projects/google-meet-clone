@@ -1,8 +1,8 @@
 import { Button, Divider, Grid, Input, Text } from "@geist-ui/core";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { UserSchema } from "./helpers/schemas";
-import ErrorText from "./Components/TextError";
+import { UserSchema } from "../helpers/schemas";
+import ErrorText from "../Components/TextError";
 import { BsGoogle, BsApple, BsFacebook } from "react-icons/bs";
 
 function App() {
