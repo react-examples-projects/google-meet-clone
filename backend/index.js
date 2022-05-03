@@ -16,6 +16,8 @@ app.use(
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     credentials: true,
     origin(origin, cb) {
+      if (!origin) return cb(null, true);
+      
       if (SERVER.API.ALLOWED_DOMAINS.includes(origin)) {
         return cb(null, true);
       }
@@ -24,7 +26,6 @@ app.use(
   })
 );
 app.use(morgan("dev"));
-app.use(express.static("./uploads"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());

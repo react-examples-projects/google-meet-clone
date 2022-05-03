@@ -1,20 +1,13 @@
 require("dotenv").config();
 
-const MONGO_DB = {
-  URL: process.env.MONGODB_URL,
-};
-
 const SERVER = {
   PORT: process.env.API_PORT || 6000,
   DEV: process.env.DEV || false,
   API: {
-    SALT_BCRYPT: process.env.SALT_BCRYPT,
-    SECRET_TOKEN: process.env.SECRET_TOKEN,
     IS_PRODUCTION: process.env.NODE_ENV === "production",
     ALLOWED_DOMAINS: [
-      "http://127.0.0.1:3000",
       "http://localhost:3000",
-      "https://mern-template-ruddy.vercel.app",
+      "http://localhost:5000",
     ],
     RATE_LIMITS: {
       windowMs: 10 * 60 * 1000, // 10 minutes
@@ -23,7 +16,14 @@ const SERVER = {
   },
 };
 
+const TWILIO = {
+  TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID,
+  TWILIO_API_KEY: process.env.TWILIO_API_KEY,
+  TWILIO_API_SECRET: process.env.TWILIO_API_SECRET,
+  TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,
+};
+
 module.exports = {
-  MONGO_DB,
   SERVER,
+  TWILIO,
 };

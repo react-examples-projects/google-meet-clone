@@ -1,19 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const existsToken = require("../middlewares/existsToken");
 
-// sub-routers
-const userRouters = require("./user");
-const authRouters = require("./auth");
+// sub-routers;
+const twilioRouters = require("./twilio");
 
-router.use("/user", existsToken, userRouters);
-router.use("/auth", authRouters);
-
-router.get("/test", existsToken, (req, res, next) => {
-  res.json({
-    message: "You're logged!",
-    user: req.user,
-  });
-});
+router.use("/twilio", twilioRouters);
 
 module.exports = router;
