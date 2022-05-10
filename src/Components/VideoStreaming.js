@@ -1,19 +1,18 @@
-import useDominantSpeaker from "../hooks/useDominantSpeaker";
-import usePublications from "../hooks/usePublications";
 import { useRoomContext } from "../context/RoomProvider";
-import { Text } from "@geist-ui/core";
-import { Track } from "./Track";
+import { memo } from "react";
+import UserParticipant from "./UserParticipant";
+import UsersParticipants from "./UsersParticipants";
 
-export default function VideoStreaming() {
+function VideoStreaming() {
   const { room } = useRoomContext();
-  const publications = usePublications(room?.localParticipant);
+  const participant = room?.localParticipant;
 
   return (
     <div className="container">
-      <Text b>{room?.localParticipant.identity}</Text>
-      {publications?.map((publication) => (
-        <Track key={publication.trackSid} publication={publication} />
-      ))}
+      <UserParticipant participant={participant} />
+      <UsersParticipants />
     </div>
   );
 }
+
+export default memo(VideoStreaming);

@@ -1,11 +1,12 @@
-import { Text, Grid, Button, Modal } from "@geist-ui/core";
+import { Tooltip, Text, Grid, Button, Modal, Image } from "@geist-ui/core";
+import { withErrorBoundary } from "react-error-boundary";
 import { BiVideo } from "react-icons/bi";
+import Error from "./Error";
 import MeetForm from "../Components/MeetForm";
 import useToggle from "../hooks/useToggle";
 
-export default function Meet() {
+function Meet() {
   const [isOpen, toggleOpen] = useToggle();
-
   return (
     <div className="full-vp">
       <Grid.Container gap={2}>
@@ -23,15 +24,29 @@ export default function Meet() {
                 Github
               </a>
               <a href="#" className="text-muted d-block">
-                Midudev
+                <Tooltip
+                  text={
+                    <div className="d-flex align-items-center">
+                      <Image
+                        src="./images/midudev.png"
+                        className="d-block me-2"
+                      />
+                      <Text small>Crack</Text>
+                    </div>
+                  }
+                  placement="bottom"
+                >
+                  Midudev
+                </Tooltip>
               </a>
+
               <a href="#" className="text-muted d-block">
                 Discord
               </a>
             </div>
           </nav>
           <div
-            className="container mx-auto d-flex justify-content-center align-items-center flex-column full-vp"
+            className="container-meet container mx-auto d-flex justify-content-center align-items-center flex-column full-vp"
             style={{
               maxWidth: "500px",
             }}
@@ -85,3 +100,7 @@ export default function Meet() {
     </div>
   );
 }
+
+export default withErrorBoundary(Meet, {
+  FallbackComponent: Error,
+});
