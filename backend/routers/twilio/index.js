@@ -11,7 +11,7 @@ router.get("/token", async (req, res) => {
   const participants = await rooms.participants.list({ status: "connected" });
   const participantsIds = participants.map((p) => p.identity);
 
-  if (participants.includes(identity)) {
+  if (participantsIds.includes(identity)) {
     return error(res, "Tu identificador no puede ser ese.", 401);
   }
 

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import useCreateRoom from "../hooks/useCreateRoom";
 import VideoStreaming from "./VideoStreaming";
+import MeetingLoader from "./Loaders/MeetingLoader";
 
 export default function Meeting() {
   const navigate = useNavigate();
@@ -13,13 +14,9 @@ export default function Meeting() {
     if (!identity || !roomName) return navigate("/meet");
   }, [identity, roomName]);
 
-  if (isError) {
-    return "Ocurrió un error al crear la sala";
-  }
-
-  if (isLoading || room === null) {
-    return "Creando la sala...";
-  }
+  if (isError) return "Ocurrió un error al crear la sala";
+  
+  if (isLoading || room === null) return <MeetingLoader />
 
   return (
     <>
