@@ -1,4 +1,4 @@
-import { Input, useToasts } from "@geist-ui/core";
+import { Input, Select, useToasts } from "@geist-ui/core";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TwilioRoomSchema } from "../helpers/schemas";
@@ -7,9 +7,19 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import ErrorText from "./TextError";
 import useNameGenerator from "../hooks/useNameGenerator";
+import { getMediaDevices } from "../helpers/utils";
+import { useQuery } from "react-query";
 
 export default function MeetForm() {
   const navigate = useNavigate();
+  const {
+    isLoading,
+    error,
+    isError,
+    data: devices = [],
+  } = useQuery("devices", () => getMediaDevices("videoinput"));
+
+  const errorCameraCount = devices.length < 1;
   const { setToast } = useToasts();
   const { setIdentity, setRoomName } = useRoomContext();
   const {
@@ -34,6 +44,8 @@ export default function MeetForm() {
     navigate("/meeting");
   };
 
+  console.log(devices?.[0]?.deviceId);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} id="form-create-room">
       <div className="mb-3">
@@ -52,6 +64,41 @@ export default function MeetForm() {
           text={errors.identity?.message}
           isVisible={!!errors.identity?.message}
         />
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="camera" className="d-block mb-3 text-muted">
+          Cámara
+        </label>
+        <Select
+          name="camera"
+          id="camera"
+          width="100%"
+          disabled={isLoading || errorCameraCount}
+          initialValue={errorCameraCount ? "error" : devices?.[0]?.deviceId}
+        >
+          {errorCameraCount && (
+            <Select.Option value="error">
+              <ErrorText
+                isVisible
+                text="No hay cámaras para elegir"
+                className="m-0"
+              />
+            </Select.Option>
+          )}
+
+          {devices.map((device) => (
+            <Select.Option
+              key={device.deviceId}
+              value={device.deviceId}
+              title={device.label}
+            >
+              {device.label}
+            </Select.Option>
+          ))}
+        </Select>
+
+        <ErrorText isVisible={isError} text={error} />
       </div>
 
       <div className="mb-3">

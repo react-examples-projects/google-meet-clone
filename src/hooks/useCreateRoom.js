@@ -9,7 +9,7 @@ export default function useCreateRoom(identity, room) {
   const { setToast } = useToasts();
   const { setRoom } = useRoomContext();
   const [_room, _setRoom] = useState(null);
-  const { isLoading, isError, error, data } = useQuery(
+  const { isLoading, isError, error, data, refetch } = useQuery(
     ["room", { identity, room }],
     getToken,
     {
@@ -46,6 +46,7 @@ export default function useCreateRoom(identity, room) {
     isError,
     error,
     data,
+    refetch,
     room: _room,
   };
 }

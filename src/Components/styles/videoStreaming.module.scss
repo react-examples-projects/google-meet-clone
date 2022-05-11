@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    min-height: 100%;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem 1rem;
+    max-width: 1400px;
+
+    >.usersParticipantsWrapper {
+        flex-basis: 60%;
+    }
+}
+
+.participantIdentity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.568);
+}
+
+.userParticipant video,
+.usersParticipants video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.userParticipant,
+.usersParticipants {
+    flex: 0 1;
+    position: relative;
+}
+
+.usersParticipants {
+    flex-basis: 39%;
+
+    .userParticipant {
+        flex-basis: 100%;
+
+        .participantIdentity {
+            font-size: 10px;
+            font-weight: normal;
+            padding: 0.3rem;
+        }
+    }
+}
+
+.usersParticipantsWrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover .participantControls {
+        opacity: 1;
+        z-index: 1;
+    }
+}
+
+.participantControls {
+    opacity: 0;
+    z-index: -1;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 100%;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    background-color: #08090fc0;
+    padding: 0.3rem;
+    position: absolute;
+    bottom: 5px;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+
+    button {
+        background-color: transparent !important;
+        border: 0 !important;
+
+        svg {
+            color: #fff !important;
+            width: 20px !important;
+            height: 20px !important;
+        }
+
+        &:hover,
+        &:focus {
+            color: #fff !important;
+
+            svg {
+                color: #fff !important;
+            }
+        }
+    }
+}
+
+.trackList {
+    max-height: 100vh;
+}

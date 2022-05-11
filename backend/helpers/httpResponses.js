@@ -40,7 +40,6 @@ function success(
 module.exports = {
   validationError,
   unauthorized,
-  invalidToken,
   success,
   error,
 }; 

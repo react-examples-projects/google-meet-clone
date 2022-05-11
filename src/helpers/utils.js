@@ -60,3 +60,15 @@ export function isValidFile(files) {
     resolve(files);
   });
 }
+
+export async function getMediaDevices(deviceType) {
+  let devices = await navigator.mediaDevices.enumerateDevices();
+  devices = devices.filter(
+    (v, i, a) =>
+      a.findIndex((v2) => v2.deviceId === v.deviceId) === i &&
+      v.kind === deviceType &&
+      !!v.deviceId
+  );
+
+  return devices;
+}
