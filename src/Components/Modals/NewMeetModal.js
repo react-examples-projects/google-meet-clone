@@ -6,7 +6,7 @@ export default function NewMeetModal({ isOpen, toggleOpen }) {
     <Modal visible={isOpen} onClose={toggleOpen}>
       <Modal.Title>Crear nueva reunión</Modal.Title>
       <Modal.Content>
-        <MeetForm />
+        <MeetForm visibleModal={isOpen}/>
       </Modal.Content>
       <Modal.Action passive onClick={toggleOpen}>
         Cancelar

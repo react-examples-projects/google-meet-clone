@@ -7,7 +7,7 @@ import { useRoomContext } from "../context/RoomProvider";
 
 export default function useCreateRoom(identity, room) {
   const { setToast } = useToasts();
-  const { setRoom } = useRoomContext();
+  const { setRoom, device } = useRoomContext();
   const [_room, _setRoom] = useState(null);
   const { isLoading, isError, error, data, refetch } = useQuery(
     ["room", { identity, room }],
@@ -16,7 +16,9 @@ export default function useCreateRoom(identity, room) {
       enabled: !!identity && !!room,
       async onSuccess({ token }) {
         const roomTwilio = await Video.connect(token, {
-          video: true,
+          video: {
+            deviceId: device,
+          },
           audio: true,
           dominantSpeaker: true,
         });

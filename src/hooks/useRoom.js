@@ -1,7 +1,12 @@
 import { useState } from "react";
 
 export default function useRoom() {
-  const [room, _setRoom] = useState({ identity: "", roomName: "", room: null });
+  const [room, _setRoom] = useState({
+    identity: "",
+    roomName: "",
+    room: null,
+    device: "",
+  });
 
   const setIdentity = (_identity) => {
     _setRoom((r) => ({ ...r, identity: _identity }));
@@ -15,5 +20,9 @@ export default function useRoom() {
     _setRoom((r) => ({ ...r, room }));
   };
 
-  return { ...room, setRoom, setIdentity, setRoomName };
+  const setDevice = (device) => {
+    _setRoom((r) => ({ ...r, device }));
+  };
+
+  return { ...room, setRoom, setIdentity, setRoomName, setDevice };
 }
