@@ -73,7 +73,11 @@ export async function getMediaDevices(deviceType) {
   return devices;
 }
 
-export async function setVideoStream({ videoNode, deviceIdVideo, deviceIdAudio }) {
+export async function setVideoStream({
+  videoNode,
+  deviceIdVideo,
+  deviceIdAudio,
+}) {
   const mediaStream = await navigator.mediaDevices.getUserMedia({
     audio: {
       deviceId: {
@@ -92,4 +96,16 @@ export async function setVideoStream({ videoNode, deviceIdVideo, deviceIdAudio }
   videoNode.srcObject = null;
   videoNode.srcObject = mediaStream;
   return mediaStream;
+}
+
+export function fullScreendVideo(elem) {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  } else {
+    console.error("`requestFullscreen` is not supported in this browser!");
+  }
 }

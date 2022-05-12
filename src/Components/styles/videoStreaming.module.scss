@@ -189,6 +189,14 @@ $dark_color: #08090fc0;
     top: 4rem;
 }
 
+.videoExpanded {
+    position: absolute;
+    width: 100%;
+    height: 100% !important;
+    z-index: 999;
+    object-fit: contain;
+}
+
 .trackList {
     max-height: 100vh;
 }
