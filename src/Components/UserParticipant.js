@@ -6,7 +6,7 @@ import css from "./styles/videoStreaming.module.scss";
 import cls from "classnames";
 import { Text, Dot } from "@geist-ui/core";
 
-export default function UserParticipant({ participant }) {
+export default function UserParticipant({ participant, isRemoteParticipant }) {
   const publications = usePublications(participant);
   const currentDominantSpeaker = useDominantSpeaker();
   const isSpeaking = currentDominantSpeaker?.identity === participant.identity;
@@ -17,7 +17,7 @@ export default function UserParticipant({ participant }) {
         {participant.identity}
         <Dot className="ms-2" type="success" />
       </Text>
-      <TrackList {...{ publications, participant }} />
+      <TrackList {...{ publications, participant, isRemoteParticipant }} />
     </div>
   );
 }

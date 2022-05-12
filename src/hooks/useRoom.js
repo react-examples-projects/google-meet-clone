@@ -29,8 +29,14 @@ export default function useRoom() {
     _setRoom((r) => ({ ...r, deviceIdAudio }));
   };
 
+  const disconnect = () => {
+    room.room?.disconnect();
+    window.location.href = "/meet";
+  };
+
   return {
     ...room,
+    disconnect,
     setRoom,
     setIdentity,
     setRoomName,

@@ -1,4 +1,5 @@
 import { Button, Grid } from "@geist-ui/core";
+import cls from "classnames";
 import {
   BiVolumeMute,
   BiVolumeFull,
@@ -7,15 +8,17 @@ import {
   BiExpand,
   BiMicrophone,
   BiMicrophoneOff,
+  BiPhone,
 } from "react-icons/bi";
+import { useRoomContext } from "../context/RoomProvider";
 import useToggle from "../hooks/useToggle";
-
 import css from "./styles/videoStreaming.module.scss";
 
 export default function ParticipantControls({
   participant,
   isRemoteParticipant,
 }) {
+  const { disconnect } = useRoomContext();
   const [isMicroMuted, toggleMicroMuted] = useToggle();
   const [isMutedAudio, toggleMutedAudio] = useToggle();
   const [isVideoOff, toggleVideoOff] = useToggle();
@@ -30,7 +33,10 @@ export default function ParticipantControls({
     participant.audioTracks.forEach((publication) => {
       const trackId = `${publication?.trackSid}_${participant.identity}`;
       const audioNode = document.getElementById(trackId);
-      audioNode.muted = isMutedAudio;
+
+      if (audioNode) {
+        audioNode.muted = !isMutedAudio;
+      }
     });
 
     toggleMutedAudio();
@@ -50,7 +56,7 @@ export default function ParticipantControls({
   const muteMicro = () => {
     participant.audioTracks.forEach((publication) => {
       if (isMicroMuted) {
-        console.log("habilitando audio")
+        console.log("habilitando audio");
         publication.track.enable();
       } else {
         publication.track.disable();
@@ -89,7 +95,7 @@ export default function ParticipantControls({
         {isRemoteParticipant && (
           <Grid {...breackpoints}>
             <Button
-              iconRight={isMutedAudio ? <BiVolumeFull /> : <BiVolumeMute />}
+              iconRight={isMutedAudio ? <BiVolumeMute /> : <BiVolumeFull />}
               onClick={mute}
               scale={0.5}
               className="p-0"
@@ -104,6 +110,18 @@ export default function ParticipantControls({
               iconRight={<BiExpand />}
               scale={0.5}
               className="p-0"
+              width="100%"
+            />
+          </Grid>
+        )}
+
+        {!isRemoteParticipant && (
+          <Grid {...breackpoints}>
+            <Button
+              iconRight={<BiPhone />}
+              className={cls("p-0", css.endCall)}
+              onClick={disconnect}
+              scale={0.5}
               width="100%"
             />
           </Grid>

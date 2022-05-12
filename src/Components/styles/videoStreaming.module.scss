@@ -1,14 +1,24 @@
+$dark_color: #08090fc0;
+
 .container {
     display: flex;
-    min-height: 100%;
-    justify-content: space-between;
     margin: 0 auto;
     width: 100%;
-    padding: 2rem 1rem;
-    max-width: 1400px;
+    padding: 1rem 1rem 0 1rem;
 
     >.usersParticipantsWrapper {
-        flex-basis: 60%;
+        flex: 0 1 100%;
+
+        .userParticipant {
+            background-color: darken($dark_color, 0.5);
+            border-radius: 10px;
+
+            video {
+                position: relative;
+                height: 96vh;
+                object-fit: contain;
+            }
+        }
     }
 }
 
@@ -18,6 +28,7 @@
     justify-content: center;
     color: #fff !important;
     position: absolute;
+    z-index: 1;
     top: 0.5rem;
     left: 0.5rem;
     font-size: 0.8rem;
@@ -31,36 +42,49 @@
 .usersParticipants video {
     display: block;
     width: 100%;
+    max-width: 100%;
     height: 100%;
-    border-radius: 10px;
-}
-
-.userParticipant,
-.usersParticipants {
-    flex: 0 1;
-    position: relative;
+    border-radius: 15px;
 }
 
 .userParticipant {
-
     &.speaking {
         video {
             border: 2px solid #36AE7C;
-            border-radius: 5px;
         }
     }
 }
 
 .usersParticipants {
-    flex-basis: 39%;
+    max-width: 500px;
+    width: 100%;
 
     .userParticipant {
-        flex-basis: 100%;
+        flex-basis: 0 1 50%;
+        min-height: 400px;
+        max-height: 400px;
+
+        video {
+            border-radius: 4px;
+        }
 
         .participantIdentity {
             font-size: 10px;
             font-weight: normal;
             padding: 0.3rem;
+        }
+    }
+
+    .participantControls {
+        button {
+            background-color: transparent !important;
+            border: 0 !important;
+
+            svg {
+                color: #fff !important;
+                width: 15px !important;
+                height: 15px !important;
+            }
         }
     }
 }
@@ -77,6 +101,28 @@
     }
 }
 
+.btnGhost {
+    // `!important` is necessary for replace default styles of geist UI
+    color: #fff !important;
+    background-color: transparent !important;
+    border: 0 !important;
+
+    svg {
+        color: #fff !important;
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    &:hover,
+    &:focus {
+        color: #fff !important;
+
+        svg {
+            color: #fff !important;
+        }
+    }
+}
+
 .participantControls {
     opacity: 0;
     z-index: -1;
@@ -84,33 +130,50 @@
     width: 100%;
     margin-top: 0.5rem;
     border-radius: 5px;
-    background-color: #08090fc0;
+    background-color: $dark_color;
     padding: 0.3rem;
     position: absolute;
-    bottom: 5px;
+    bottom: 1rem;
     width: 90%;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 180px;
+    max-width: 160px;
+
+
 
     button {
-        background-color: transparent !important;
-        border: 0 !important;
+        @extend .btnGhost;
+    }
 
+    .endCall,
+    .endCall:hover,
+    .endCall:focus {
         svg {
-            color: #fff !important;
-            width: 20px !important;
-            height: 20px !important;
+            color: #B22727 !important;
         }
+    }
+}
 
-        &:hover,
-        &:focus {
-            color: #fff !important;
+.userPartipantDisabledTrack {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
 
-            svg {
-                color: #fff !important;
-            }
-        }
+}
+
+.meetInfo,
+.meetInfoClose {
+    top: 1.5rem;
+    left: 1.5rem;
+    max-width: 400px;
+    width: 100%;
+    z-index: 2;
+    background-color: #08090f !important;
+    border-color: rgba(255, 255, 255, 0.247) !important;
+
+    .meetInfoInput input {
+        color: #fff !important;
+        cursor: pointer;
     }
 }
 

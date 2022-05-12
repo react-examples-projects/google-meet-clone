@@ -32,13 +32,6 @@ export default function useCreateRoom(identity, room) {
         text: `${p.identity} entró a la sala`,
         type: "success",
       });
-
-      p.tracks.forEach((publication) => {
-        if (publication.isSubscribed) {
-          handleTrackDisabled(publication.track);
-        }
-        publication.on("subscribed", handleTrackDisabled);
-      });
     });
 
     roomTwilio.on("participantDisconnected", (p) => {
@@ -48,29 +41,8 @@ export default function useCreateRoom(identity, room) {
       });
     });
 
-    roomTwilio.participants.forEach((participant) => {
-      participant.tracks.forEach((publication) => {
-        if (publication.isSubscribed) {
-          handleTrackDisabled(publication.track);
-        }
-        publication.on("subscribed", handleTrackDisabled);
-      });
-    });
-
     _setRoom(roomTwilio);
     setRoom(roomTwilio);
-  }
-
-  function handleTrackDisabled(track) {
-    track.on("disabled", () => {
-      console.log("se desactivo un track");
-      /* Hide the associated <video> element and show an avatar image. */
-    });
-
-    track.on("enabled", () => {
-      console.log("se activo un track");
-      /* Hide the associated <video> element and show an avatar image. */
-    });
   }
 
   return {
