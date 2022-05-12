@@ -41,6 +41,16 @@
     position: relative;
 }
 
+.userParticipant {
+
+    &.speaking {
+        video {
+            border: 2px solid #36AE7C;
+            border-radius: 5px;
+        }
+    }
+}
+
 .usersParticipants {
     flex-basis: 39%;
 
@@ -81,7 +91,7 @@
     width: 90%;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 300px;
+    max-width: 180px;
 
     button {
         background-color: transparent !important;

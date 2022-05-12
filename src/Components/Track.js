@@ -1,16 +1,17 @@
 import { useEffect, memo, useRef } from "react";
 import useTrack from "../hooks/useTrack";
 
-function Track({ publication }) {
+function Track({ publication, participant }) {
   const track = useTrack(publication);
   const trackRef = useRef(null);
+  const trackId = `${publication?.trackSid}_${participant.identity}`;
 
   useEffect(() => {
     if (trackRef.current) {
-      trackRef.current.id = publication?.trackSid;
+      trackRef.current.id = trackId;
       track?.attach(trackRef?.current);
     }
-  }, [track, publication.trackSid]);
+  }, [track, publication.trackSid, trackId]);
 
   if (!track) return null;
 

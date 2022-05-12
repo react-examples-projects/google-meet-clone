@@ -5,7 +5,8 @@ export default function useRoom() {
     identity: "",
     roomName: "",
     room: null,
-    device: "",
+    deviceIdVideo: "",
+    deviceIdAudio: "",
   });
 
   const setIdentity = (_identity) => {
@@ -20,9 +21,20 @@ export default function useRoom() {
     _setRoom((r) => ({ ...r, room }));
   };
 
-  const setDevice = (device) => {
-    _setRoom((r) => ({ ...r, device }));
+  const setDeviceIdVideo = (deviceIdVideo) => {
+    _setRoom((r) => ({ ...r, deviceIdVideo }));
   };
 
-  return { ...room, setRoom, setIdentity, setRoomName, setDevice };
+  const setDeviceIdAudio = (deviceIdAudio) => {
+    _setRoom((r) => ({ ...r, deviceIdAudio }));
+  };
+
+  return {
+    ...room,
+    setRoom,
+    setIdentity,
+    setRoomName,
+    setDeviceIdVideo,
+    setDeviceIdAudio,
+  };
 }

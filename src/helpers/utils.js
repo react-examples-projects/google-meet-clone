@@ -73,17 +73,18 @@ export async function getMediaDevices(deviceType) {
   return devices;
 }
 
-export async function setVideoStream({ videoNode, deviceId }) {
-  const constraints = {
-    width: { min: 200, ideal: 380, max: 500 },
-    height: { min: 200, ideal: 220, max: 500 },
-    deviceId: {
-      exact: deviceId,
-    },
-  };
+export async function setVideoStream({ videoNode, deviceIdVideo, deviceIdAudio }) {
   const mediaStream = await navigator.mediaDevices.getUserMedia({
-    audio: true,
-    video: constraints,
+    audio: {
+      deviceId: {
+        exact: deviceIdAudio,
+      },
+    },
+    video: {
+      deviceId: {
+        exact: deviceIdVideo,
+      },
+    },
   });
 
   console.log(mediaStream);

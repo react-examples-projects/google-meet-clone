@@ -1,26 +1,33 @@
 import { Input, Select, useToasts } from "@geist-ui/core";
 import { useRoomContext } from "../context/RoomProvider";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "react-query";
 import { useRef, useEffect, useState } from "react";
-import { getMediaDevices, setVideoStream } from "../helpers/utils";
+import { setVideoStream } from "../helpers/utils";
 import ErrorText from "./TextError";
 import useMeetForm from "../hooks/useMeetForm";
+import useDevices from "../hooks/useDevices";
 
 export default function MeetForm({ visibleModal }) {
   const navigate = useNavigate();
-  const {
-    isLoading,
-    error,
-    isError,
-    data: devices = [],
-  } = useQuery("devices", () => getMediaDevices("videoinput"));
-
-  const errorCameraCount = devices.length < 1;
   const videoRef = useRef(null);
+  const { audioInput, videoInput } = useDevices();
+
+  const videoDevices = videoInput.data || [];
+  const audioDevices = audioInput.data || [];
+
+  const errorCameraCount = videoDevices.length < 1;
+  const errorAudioCount = audioDevices.length < 1;
+
   const [currentStream, setCurrentStream] = useState(null);
   const { setToast } = useToasts();
-  const { setIdentity, setRoomName, setDevice, device } = useRoomContext();
+  const {
+    setIdentity,
+    setRoomName,
+    setDeviceIdVideo,
+    setDeviceIdAudio,
+    deviceIdVideo,
+    deviceIdAudio,
+  } = useRoomContext();
   const {
     register,
     handleSubmit,
@@ -28,7 +35,7 @@ export default function MeetForm({ visibleModal }) {
   } = useMeetForm();
 
   const onSubmit = ({ identity, room }) => {
-    if (!device) return;
+    if (!deviceIdVideo) return;
 
     setToast({
       text: "Creando sala...",
@@ -41,16 +48,17 @@ export default function MeetForm({ visibleModal }) {
 
   useEffect(() => {
     (async () => {
-      if (device) {
+      if (deviceIdVideo && deviceIdAudio) {
         const stream = await setVideoStream({
           videoNode: videoRef.current,
-          deviceId: device,
+          deviceIdVideo,
+          deviceIdAudio,
         });
 
         setCurrentStream(stream);
       }
     })();
-  }, [device]);
+  }, [deviceIdVideo, deviceIdAudio]);
 
   useEffect(() => {
     // si el modal no es visible y la camara aun graba, paramos cada track
@@ -91,9 +99,11 @@ export default function MeetForm({ visibleModal }) {
           name="camera"
           id="camera"
           width="100%"
-          onChange={(deviceId) => setDevice(deviceId)}
-          disabled={isLoading || errorCameraCount}
-          initialValue={errorCameraCount ? "error" : devices?.[0]?.deviceId}
+          onChange={(deviceId) => setDeviceIdVideo(deviceId)}
+          disabled={videoInput.isLoading || errorCameraCount}
+          initialValue={
+            errorCameraCount ? "error" : videoDevices?.[0]?.deviceId
+          }
         >
           {errorCameraCount && (
             <Select.Option value="error">
@@ -105,7 +115,7 @@ export default function MeetForm({ visibleModal }) {
             </Select.Option>
           )}
 
-          {devices.map((device) => (
+          {videoDevices.map((device) => (
             <Select.Option
               key={device.deviceId}
               value={device.deviceId}
@@ -116,25 +126,67 @@ export default function MeetForm({ visibleModal }) {
           ))}
         </Select>
 
-        {device && (
-          <video
-            width="100%"
-            className="mt-2 d-block w-100 h-100"
-            style={{ borderRadius: "5px" }}
-            height="200px"
-            ref={videoRef}
-            autoPlay
-          />
-        )}
-
         <ErrorText
           className="mt-2"
           text="Debe seleccionar una fuente de video"
-          isVisible={!device}
+          isVisible={!deviceIdVideo}
         />
 
-        <ErrorText isVisible={isError} text={error} />
+        <ErrorText isVisible={videoInput.isError} text={videoInput.error} />
       </div>
+
+      <div className="mb-3">
+        <label htmlFor="audio" className="d-block mb-3 text-muted">
+          Fuente de audio
+        </label>
+        <Select
+          name="audio"
+          id="audio"
+          width="100%"
+          onChange={(deviceId) => setDeviceIdAudio(deviceId)}
+          disabled={audioInput.isLoading || errorAudioCount}
+          initialValue={errorAudioCount ? "error" : audioDevices?.[0]?.deviceId}
+        >
+          {errorAudioCount && (
+            <Select.Option value="error">
+              <ErrorText
+                isVisible
+                text="No hay fuentes de audio para elegir"
+                className="m-0"
+              />
+            </Select.Option>
+          )}
+
+          {audioDevices.map((device) => (
+            <Select.Option
+              key={device.deviceId}
+              value={device.deviceId}
+              title={device.label}
+            >
+              {device.label}
+            </Select.Option>
+          ))}
+        </Select>
+
+        <ErrorText
+          className="mt-2"
+          text="Debe seleccionar una fuente de audio"
+          isVisible={!deviceIdAudio}
+        />
+
+        <ErrorText isVisible={videoInput.isError} text={videoInput.error} />
+      </div>
+
+      {deviceIdVideo && deviceIdAudio && (
+        <video
+          width="100%"
+          className="my-2 d-block w-100 h-100"
+          style={{ borderRadius: "5px" }}
+          height="200px"
+          ref={videoRef}
+          autoPlay
+        />
+      )}
 
       <div className="mb-3">
         <label htmlFor="room" className="d-block mb-3 text-muted">

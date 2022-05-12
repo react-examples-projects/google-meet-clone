@@ -13,6 +13,7 @@ function VideoStreaming() {
   useBody({
     backgroundColor: "#1c1e2e",
     minHeight: "100vh",
+    height: "auto",
     color: "#e2e8f0",
   });
 
@@ -20,7 +21,10 @@ function VideoStreaming() {
     <div className={css.container}>
       <div className={css.usersParticipantsWrapper}>
         <UserParticipant participant={participant} />
-        <ParticipantControls participant={participant} />
+        <ParticipantControls
+          participant={participant}
+          isRemoteParticipant={false}
+        />
       </div>
 
       <UsersParticipants />
