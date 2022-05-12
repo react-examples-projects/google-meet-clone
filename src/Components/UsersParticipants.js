@@ -3,14 +3,25 @@ import useParticipants from "../hooks/useParticipants";
 import UserParticipant from "./UserParticipant";
 import css from "./styles/videoStreaming.module.scss";
 import ParticipantControls from "./ParticipantControls";
-import { Grid, Drawer } from "@geist-ui/core";
+import { Grid, Drawer, Text } from "@geist-ui/core";
 
 export default function UsersParticipants({ isVisible, toggleVisible }) {
   const usersParticipants = useParticipants();
 
   return (
-    <Drawer visible={isVisible} onClose={toggleVisible} placement="right">
-      <Drawer.Title>Participantes</Drawer.Title>
+    <Drawer
+      visible={isVisible}
+      onClose={toggleVisible}
+      placement="right"
+      style={{ width: "100%", maxWidth: "500px", backgroundColor: "#eee" }}
+    >
+      <Drawer.Title>
+        <Text h4>Participantes</Text>
+      </Drawer.Title>
+      <Text className="text-muted" small>
+        Puedes mutear los participantes y expandir su transmisión, sólo debes
+        sobreponer tu cursor en el cuadro de transmisión de un participante.
+      </Text>
       <Drawer.Content>
         <div className={css.usersParticipants}>
           <Grid.Container gap={1}>
@@ -24,10 +35,7 @@ export default function UsersParticipants({ isVisible, toggleVisible }) {
                 className="w-100"
               >
                 <div className={css.usersParticipantsWrapper}>
-                  <UserParticipant
-                    participant={participant}
-                    isRemoteParticipant={true}
-                  />
+                  <UserParticipant participant={participant} />
                   <ParticipantControls
                     participant={participant}
                     isRemoteParticipant={true}

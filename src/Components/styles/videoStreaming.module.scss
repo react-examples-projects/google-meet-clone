@@ -56,16 +56,20 @@ $dark_color: #08090fc0;
 }
 
 .usersParticipants {
-    max-width: 500px;
     width: 100%;
 
+    .usersParticipantsWrapper {
+        height: 150px;
+    }
+
     .userParticipant {
-        flex-basis: 0 1 50%;
-        min-height: 400px;
-        max-height: 400px;
+        flex: 0 1 50%;
+        max-height: 150px;
 
         video {
             border-radius: 4px;
+            height: 150px;
+            object-fit: cover;
         }
 
         .participantIdentity {
@@ -76,14 +80,17 @@ $dark_color: #08090fc0;
     }
 
     .participantControls {
+        max-width: 120px;
+        padding: 0.3rem;
+
         button {
             background-color: transparent !important;
             border: 0 !important;
 
             svg {
                 color: #fff !important;
-                width: 15px !important;
-                height: 15px !important;
+                width: 18px !important;
+                height: 18px !important;
             }
         }
     }
@@ -175,6 +182,11 @@ $dark_color: #08090fc0;
         color: #fff !important;
         cursor: pointer;
     }
+}
+
+.meetInfoClose {
+    background-color: transparent !important;
+    top: 4rem;
 }
 
 .trackList {

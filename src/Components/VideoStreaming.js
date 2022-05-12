@@ -1,5 +1,5 @@
 import { useRoomContext } from "../context/RoomProvider";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { BiGroup } from "react-icons/bi";
 import { Button } from "@geist-ui/core";
 import UserParticipant from "./UserParticipant";
@@ -22,6 +22,13 @@ function VideoStreaming() {
     height: "auto",
     color: "#e2e8f0",
   });
+
+  useEffect(() => {
+    const disconnect = () => room?.disconnect();
+    window.addEventListener("beforeunload", disconnect);
+    
+    return () => window.removeEventListener("beforeunload", disconnect);
+  }, [room]);
 
   return (
     <div className={css.container}>
