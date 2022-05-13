@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./pages/App";
 import Forms from "./pages/Forms";
-import Meet from "./pages/meet";
+import Meet from "./pages/Meet";
 import Meeting from "./Components/Meeting";
 import NotFound from "./pages/NotFound";
 

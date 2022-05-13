@@ -4,10 +4,15 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <div className="container">
-        <a href="#" className="text-muted d-block">
+        <a href="#" className="text-muted d-block" rel="noreferrer nofollow">
           Github
         </a>
-        <a href="#" className="text-muted d-block">
+        <a
+          href="https://www.youtube.com/c/midudev"
+          rel="noreferrer nofollow"
+          target="_blank"
+          className="text-muted d-block"
+        >
           <Tooltip
             text={
               <div className="d-flex align-items-center">
@@ -21,7 +26,12 @@ export default function Navbar() {
           </Tooltip>
         </a>
 
-        <a href="#" className="text-muted d-block">
+        <a
+          rel="noreferrer nofollow"
+          href="https://discord.gg/midudev"
+          target="_blank"
+          className="text-muted d-block"
+        >
           Discord
         </a>
       </div>

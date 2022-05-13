@@ -9,7 +9,7 @@ import {
   BiMicrophoneOff,
   BiPhone,
 } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRoomContext } from "../context/RoomProvider";
 import { fullScreendVideo } from "../helpers/utils";
 import useToggle from "../hooks/useToggle";
@@ -21,7 +21,6 @@ export default function ParticipantControls({
   isRemoteParticipant,
 }) {
   const { disconnect } = useRoomContext();
-  const [currentVideoExpanded, setCurrentVideoExpanded] = useState(null);
   const [isExpanded, toggleExpanded] = useToggle();
   const [isMicroMuted, toggleMicroMuted] = useToggle();
   const [isMutedAudio, toggleMutedAudio] = useToggle();
@@ -75,7 +74,6 @@ export default function ParticipantControls({
       const videoNode = document.getElementById(trackId);
       if (videoNode && !isExpanded) {
         fullScreendVideo(videoNode);
-        setCurrentVideoExpanded(videoNode);
       }
     });
 
@@ -91,6 +89,7 @@ export default function ParticipantControls({
         e.target.style.objectFit = "cover";
       }
     };
+    
     window.addEventListener("fullscreenchange", change);
 
     return () => window.removeEventListener("fullscreenchange", change);

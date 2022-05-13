@@ -1,4 +1,4 @@
-import { Input, Select, useToasts } from "@geist-ui/core";
+import { Input, Select, useToasts, Text } from "@geist-ui/core";
 import { useRoomContext } from "../context/RoomProvider";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
@@ -199,6 +199,11 @@ export default function MeetForm({ visibleModal }) {
           isVisible={!!errors.room?.message}
         />
       </div>
+
+      <Text className="text-muted" small>
+        Recuerda seleccionar manualmente los dispotivios de cámara y fuente de
+        audio para previsualizar su funcionamiento
+      </Text>
     </form>
   );
 }

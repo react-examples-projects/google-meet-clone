@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# Google Meet Clone
+[![Twitter: libardo\_r12](https://img.shields.io/twitter/follow/libardo\_r12.svg?style=social)](https://twitter.com/libardo\_r12)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Un clon de google meet con las funciones básicas como:
 
-## Available Scripts
+- Silenciar a otros participantes
 
-In the project directory, you can run:
+- Silenciar tu micróifono
 
-### `npm start`
+- Pausar tu transmisión
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Salir de la reunión
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+El proyecto fue desarrollado usando React y Express para el backend, no posee autenticación ni rutas privadas por lo tanto las interacciones son anónimas con nombres de usuario alteatorio o personalizados.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Previsualización del proyecto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Puede visitar este proyecto en la siguiente url:
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Comandos para iniciar el proyecto
 
-## Learn More
+Primero debe instalar las dependecias de ambas partes el frontend y backend, para ello debe seguir los siguientes comandos.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+Instalar dependencias del frontend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```javascript
+npm install
+```
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+Instalar dependencias del backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```javascript
+cd ./backend
+npm install
+```
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+Despues de haber instalado todas las dependencias debe iniciar el backend, pero antes debe de configurar las variables de entorno.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```javascript
+API_PORT=5000
+NODE_ENV=development
+DEV=TRUE
 
-### `npm run build` fails to minify
+TWILIO_API_KEY=
+TWILIO_ACCOUNT_SID=
+TWILIO_API_SECRET=
+TWILIO_AUTH_TOKEN=
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Luego de haber configurado las variables de entorno ya es posible iniciar el servidor en modo desarrollo.
+
+```javascript
+npm run dev
+```
+
+
+
+Iniciar el frontend debe ejecutar el siguiente comando.
+
+```javascript
+npm start
+```
+
+Ya ambos proyectos deben de estar configurado, no olvide en establecer las variables de configuración en la parte del frontend para realizar las request de forma local.
+
+```javascript
+const API_URL = "http://localhost:5000"; // por defecto el port 5000
+
+export const API_GET_TOKEN = (identity, room = "Meet Room") =>
+  `${API_URL}/api/twilio/token?identity=${identity}&room=${room}`;
+
+
+```
+
+
+
+## Recursos usados para este proyecto
+
+Ciertos recursos incluidos en este proyecto son de páginas públicas de imágenes.
+
+- https://www.behance.net/
+
+- https://storyset.com/
+
+- https://icon-icons.com/
+
+
+
+## Desarrollador
+
+👤 **Libardo Rengifo**
+
+* Website: https://portfolio-znareak.vercel.app/
+* Github: [@znareak](https://github.com/znareak)
+
+## Muestra tu apoyo
+
+Otorgame una ⭐️ a este proyecto si te gusto!
