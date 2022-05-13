@@ -4,7 +4,11 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <div className="container">
-        <a href="#" className="text-muted d-block" rel="noreferrer nofollow">
+        <a
+          href="https://github.com/react-examples-projects/react-form-hooks-practice"
+          className="text-muted d-block"
+          rel="noreferrer nofollow"
+        >
           Github
         </a>
         <a

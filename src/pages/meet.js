@@ -22,7 +22,7 @@ function Meet() {
           </Grid>
           <Grid
             className="full-vp container-meet-bg"
-            {...breakPoints}
+            {...breakPoints} 
             xs={0}
             sm={0}
           />

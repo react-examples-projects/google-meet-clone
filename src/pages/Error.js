@@ -12,6 +12,7 @@ export default function Error() {
         style={{ maxWidth: "600px" }}
       >
         <img
+          alt="Un error ocurrió en la página"
           src="./images/error.svg"
           className="w-100 d-block mx-auto"
           style={{ maxWidth: "300px" }}
@@ -22,7 +23,7 @@ export default function Error() {
         <Text className="text-muted" p>
           Acaba de suceder un error desconocido dentro de la plataforma, puedes
           refrescar el navegador o regresar a la página de inicio.
-        </Text>
+        </Text>  
         <Text type="success" className="mb-2" small>
           <Link
             to="/contact"

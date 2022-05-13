@@ -51,7 +51,7 @@ function App() {
                   text={errors.name?.message}
                   isVisible={!!errors.name?.message}
                 />
-              </div>
+              </div>     
 
               <div className="mb-3">
                 <label htmlFor="surname" className="text-muted d-block mb-1">
@@ -59,7 +59,7 @@ function App() {
                 </label>
                 <Input
                   id="surname"
-                  name="surname"
+                  name="surname" 
                   {...register("surname")}
                   width="100%"
                 />

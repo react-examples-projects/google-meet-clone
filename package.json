@@ -1,7 +1,8 @@
 {
-  "name": "react-form-practice",
+  "name": "google-meet-clone",
+  "author": "Libardo Rengifo",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@geist-ui/core": "2.3.8",
     "@hookform/resolvers": "2.8.8",

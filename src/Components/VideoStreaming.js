@@ -53,7 +53,7 @@ function VideoStreaming() {
             participant={participant}
             isRemoteParticipant={false}
           />
-
+ 
           <Button
             onClick={toggleVisible}
             scale={1 / 2}

@@ -37,6 +37,7 @@ export default function UsersParticipants({ isVisible, toggleVisible }) {
 
                 <Image
                   src="./images/participants.svg"
+                  alt="No hay participantes en la reunión"
                   className="d-block mt-1 mx-auto img-fluid w-100"
                   style={{ objectFit: "cover", maxWidth: "18rem" }}
                 />

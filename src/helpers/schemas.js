@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 const TwilioRoomSchema = yup.object({
-  identity: yup
+  identity: yup 
     .string()
     .trim()
     .min(3, "El nombre de usuario debe tener mínimo 3 carácteres")
@@ -14,4 +14,4 @@ const TwilioRoomSchema = yup.object({
     .required("El identificador de la sala es obligatorio"),
 });
 
-export { UserSchema, UserRegistrationSchema, TwilioRoomSchema };
+export { TwilioRoomSchema };

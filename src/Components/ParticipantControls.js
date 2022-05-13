@@ -43,7 +43,7 @@ export default function ParticipantControls({
       }
     });
 
-    toggleMutedAudio();
+    toggleMutedAudio(); 
   };
 
   const turnOffCamera = () => {

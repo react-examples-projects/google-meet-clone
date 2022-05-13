@@ -1,6 +1,6 @@
 import { Text, Button } from "@geist-ui/core";
 import { BiVideo } from "react-icons/bi";
-import useMediaQuery from "../hooks/useMediaQuery";
+import useMediaQuery from "../hooks/useMediaQuery"; 
 
 export default function MeetHero({ isOpen, toggleOpen }) {
   const isMobile = useMediaQuery("(max-width: 576px)");

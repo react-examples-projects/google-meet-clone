@@ -11,6 +11,7 @@ export default function NotFound() {
         style={{ maxWidth: "600px" }}
       >
         <img
+          alt="La página o recurso que busca no se encuentra disponible"
           src="./images/404.svg"
           className="w-100 d-block mx-auto"
           style={{ maxWidth: "300px" }}
