@@ -10,9 +10,11 @@ import useBody from "../hooks/useBody";
 import useToggle from "../hooks/useToggle";
 import ParticipantControls from "./ParticipantControls";
 import MeetInfo from "./MeetInfo";
+import { useState } from "react";
 
 function VideoStreaming() {
   const { room } = useRoomContext();
+  const [isAudioReady, setAudioReady] = useState(false);
   const participant = room?.localParticipant;
   const [isVisible, toggleVisible] = useToggle();
 
@@ -24,10 +26,21 @@ function VideoStreaming() {
   });
 
   useEffect(() => {
+    let timeOutId = null;
     const disconnect = () => room?.disconnect();
     window.addEventListener("beforeunload", disconnect);
-    
-    return () => window.removeEventListener("beforeunload", disconnect);
+
+    if (room) {
+      setAudioReady(true);
+      timeOutId = setTimeout(() => {
+        setAudioReady(false);
+      }, 1000);
+    }
+
+    return () => {
+      window.removeEventListener("beforeunload", disconnect);
+      clearTimeout(timeOutId);
+    };
   }, [room]);
 
   return (
@@ -52,6 +65,8 @@ function VideoStreaming() {
       <MeetInfo />
 
       <UsersParticipants {...{ isVisible, toggleVisible }} />
+
+      {room && isAudioReady && <audio src="./meet_ready.mp3" autoPlay />}
     </div>
   );
 }

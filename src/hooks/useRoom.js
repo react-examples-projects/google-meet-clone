@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { getSession, deleteSession } from "../helpers/storage";
 
 export default function useRoom() {
+  const session = getSession();
   const [room, _setRoom] = useState({
-    identity: "",
-    roomName: "",
+    identity: session?.identity || "",
+    roomName: session?.roomName || "",
     room: null,
-    deviceIdVideo: "",
-    deviceIdAudio: "",
+    deviceIdVideo: session?.deviceIdVideo || "",
+    deviceIdAudio: session?.deviceIdAudio || "",
   });
 
   const setIdentity = (_identity) => {
@@ -31,6 +33,7 @@ export default function useRoom() {
 
   const disconnect = () => {
     room.room?.disconnect();
+    deleteSession();
     window.location.href = "/meet";
   };
 

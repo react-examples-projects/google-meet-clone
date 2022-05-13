@@ -1,7 +1,11 @@
 import { Text, Button } from "@geist-ui/core";
 import { BiVideo } from "react-icons/bi";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 export default function MeetHero({ isOpen, toggleOpen }) {
+  const isMobile = useMediaQuery("(max-width: 576px)");
+  const scaleButton = isMobile ? 0.5 : 1;
+
   return (
     <div
       className="container-meet container mx-auto d-flex justify-content-center align-items-center flex-column full-vp"
@@ -19,6 +23,7 @@ export default function MeetHero({ isOpen, toggleOpen }) {
       </Text>
       <div className="w-100">
         <Button
+          scale={scaleButton}
           type="success"
           className="me-2"
           onClick={toggleOpen}
@@ -27,7 +32,9 @@ export default function MeetHero({ isOpen, toggleOpen }) {
           Empezar ahora
           <BiVideo className="ms-1" style={{ fontSize: "1.1rem" }} />
         </Button>
-        <Button type="default">Acerda de</Button>
+        <Button scale={scaleButton} type="default">
+          Acerda de
+        </Button>
       </div>
     </div>
   );

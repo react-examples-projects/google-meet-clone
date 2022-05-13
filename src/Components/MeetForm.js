@@ -6,6 +6,7 @@ import { setVideoStream } from "../helpers/utils";
 import ErrorText from "./TextError";
 import useMeetForm from "../hooks/useMeetForm";
 import useDevices from "../hooks/useDevices";
+import { saveSession } from "../helpers/storage";
 
 export default function MeetForm({ visibleModal }) {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ export default function MeetForm({ visibleModal }) {
     });
     setIdentity(identity);
     setRoomName(room);
+    saveSession({ identity, roomName: room, deviceIdVideo, deviceIdAudio });
     navigate("/meeting");
   };
 

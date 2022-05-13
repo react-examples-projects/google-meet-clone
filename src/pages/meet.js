@@ -20,7 +20,12 @@ function Meet() {
             <Navbar />
             <MeetHero {...{ isOpen, toggleOpen }} />
           </Grid>
-          <Grid className="full-vp container-meet-bg" {...breakPoints} />
+          <Grid
+            className="full-vp container-meet-bg"
+            {...breakPoints}
+            xs={0}
+            sm={0}
+          />
         </Grid.Container>
         <NewMeetModal {...{ isOpen, toggleOpen }} />
       </div>

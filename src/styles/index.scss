@@ -223,3 +223,23 @@ h1 {
     max-width: 700px !important;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .container-meet {
+    text-align: center;
+
+    p.text-muted {
+      font-size: 15px;
+    }
+
+    h1.text-colored {
+      font-size: 2rem;
+    }
+  }
+
+  .nav {
+    .container {
+      justify-content: space-evenly;
+    }
+  }
+}
