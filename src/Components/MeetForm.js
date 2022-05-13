@@ -121,9 +121,9 @@ export default function MeetForm({ visibleModal }) {
             <Select.Option
               key={device.deviceId}
               value={device.deviceId}
-              title={device.label}
+              title={device.label || device.deviceId}
             >
-              {device.label}
+              {device.label || device.deviceId}
             </Select.Option>
           ))}
         </Select>
@@ -163,9 +163,9 @@ export default function MeetForm({ visibleModal }) {
             <Select.Option
               key={device.deviceId}
               value={device.deviceId}
-              title={device.label}
+              title={device.label || device.deviceId}
             >
-              {device.label}
+              {device.label || device.deviceId}
             </Select.Option>
           ))}
         </Select>
@@ -207,8 +207,8 @@ export default function MeetForm({ visibleModal }) {
         audio para previsualizar su funcionamiento
       </Text>
       <Text className="text-muted d-block mt-1 fw-bold" small>
-        Recuerda proporcinar permisos de acceder a tus dispositivos de cámara
-        y audio.
+        Recuerda proporcinar permisos de acceder a tus dispositivos de cámara y
+        audio.
       </Text>
     </form>
   );

@@ -197,6 +197,25 @@ $dark_color: #08090fc0;
     object-fit: contain;
 }
 
+.participantList {
+    position: absolute;
+    padding: 2rem;
+    color: #000;
+    text-align: center;
+    background-color:#eeeeee;
+    right: -50rem;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    transition: right 1s cubic-bezier(0.23, 1, 0.320, 1);
+    border-radius: 20px 0 0 20px;
+}
+
+.activeParticipantList {
+    right: 0;
+}
+
 .trackList {
     max-height: 100vh;
 }

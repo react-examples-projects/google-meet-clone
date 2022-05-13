@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useRoomContext } from "../context/RoomProvider";
 
 export default function useCreateRoom(identity, room) {
-  
   const { setToast } = useToasts();
   const { setRoom, deviceIdVideo, deviceIdAudio } = useRoomContext();
   const [_room, _setRoom] = useState(null);
