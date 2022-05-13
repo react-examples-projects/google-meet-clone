@@ -2,11 +2,11 @@ import { Input, Select, useToasts, Text } from "@geist-ui/core";
 import { useRoomContext } from "../context/RoomProvider";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
-import { setVideoStream } from "../helpers/utils";
+import { setVideoStream, checkPermissionsDevices } from "../helpers/utils";
+import { saveSession } from "../helpers/storage";
 import ErrorText from "./TextError";
 import useMeetForm from "../hooks/useMeetForm";
 import useDevices from "../hooks/useDevices";
-import { saveSession } from "../helpers/storage";
 
 export default function MeetForm({ visibleModal }) {
   const navigate = useNavigate();
@@ -46,6 +46,17 @@ export default function MeetForm({ visibleModal }) {
     setRoomName(room);
     saveSession({ identity, roomName: room, deviceIdVideo, deviceIdAudio });
     navigate("/meeting");
+  };
+
+  const checkPermissions = async () => {
+    try {
+      await checkPermissionsDevices();
+      window.location.reload();
+    } catch (err) {
+      alert(
+        "Debes proporcionar permisos a la aplicación para usar tu cámara y micrófonos"
+      );
+    }
   };
 
   useEffect(() => {
@@ -92,6 +103,17 @@ export default function MeetForm({ visibleModal }) {
           isVisible={!!errors.identity?.message}
         />
       </div>
+
+      <Text className="text-muted d-block mt-1 mb-2" small>
+        <Text
+          className="fw-bold text-decoration-underline d-inline-block me-1 my-0"
+          style={{ cursor: "pointer" }}
+          onClick={checkPermissions}
+        >
+          Click aquí
+        </Text>
+        para proporcinar permisos de tu cámara y micrófono
+      </Text>
 
       <div className="mb-3">
         <label htmlFor="camera" className="d-block mb-3 text-muted">
@@ -205,10 +227,6 @@ export default function MeetForm({ visibleModal }) {
       <Text className="text-muted" small>
         Debes seleccionar manualmente los dispotivios de cámara y fuente de
         audio para previsualizar su funcionamiento
-      </Text>
-      <Text className="text-muted d-block mt-1 fw-bold" small>
-        Recuerda proporcinar permisos de acceder a tus dispositivos de cámara y
-        audio.
       </Text>
     </form>
   );

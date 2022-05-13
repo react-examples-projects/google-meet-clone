@@ -108,6 +108,30 @@ $dark_color: #08090fc0;
     }
 }
 
+.goodNetwork {
+    color: #04c304 !important;
+
+    &:hover {
+        color: #04c304 !important;
+    }
+}
+
+.regularNetwork {
+    color: #FF8D29 !important;
+
+    &:hover {
+        color: #FF8D29 !important;
+    }
+}
+
+.badNetwork {
+    color: #B22727 !important;
+
+    &:hover {
+        color: #B22727 !important;
+    }
+}
+
 .btnGhost {
     // `!important` is necessary for replace default styles of geist UI
     color: #fff !important;
@@ -115,16 +139,19 @@ $dark_color: #08090fc0;
     border: 0 !important;
 
     svg {
-        color: #fff !important;
         width: 25px !important;
         height: 25px !important;
+    }
+
+    svg:not(.badNetwork):not(.goodNetwork):not(.regularNetwork) {
+        color: #fff !important;
     }
 
     &:hover,
     &:focus {
         color: #fff !important;
 
-        svg {
+        svg:not(.badNetwork):not(.goodNetwork):not(.regularNetwork) {
             color: #fff !important;
         }
     }
@@ -152,10 +179,10 @@ $dark_color: #08090fc0;
         @extend .btnGhost;
     }
 
-    .endCall,
-    .endCall:hover,
-    .endCall:focus {
-        svg {
+    button.endCall,
+    button.endCall:hover,
+    button.endCall:focus {
+        svg:not(.badNetwork):not(.goodNetwork):not(.regularNetwork) {
             color: #B22727 !important;
         }
     }
@@ -202,7 +229,7 @@ $dark_color: #08090fc0;
     padding: 2rem;
     color: #000;
     text-align: center;
-    background-color:#eeeeee;
+    background-color: #eeeeee;
     right: -50rem;
     top: 0;
     height: 100%;

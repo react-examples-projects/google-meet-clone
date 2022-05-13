@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="nav">
       <div className="container">
         <a
-          href="https://github.com/react-examples-projects/react-form-hooks-practice"
+          href="https://github.com/react-examples-projects/google-meet-clone"
           className="text-muted d-block"
           rel="noreferrer nofollow"
         >

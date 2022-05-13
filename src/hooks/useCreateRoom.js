@@ -25,6 +25,10 @@ export default function useCreateRoom(identity, room) {
         deviceId: deviceIdAudio,
       },
       dominantSpeaker: true,
+      networkQuality: {
+        local: 1,
+        remote: 2,
+      },
     });
 
     roomTwilio.on("participantConnected", (p) => {
