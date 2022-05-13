@@ -16,8 +16,9 @@ app.use(
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     credentials: true,
     origin(origin, cb) {
+      console.log(origin);
       if (!origin) return cb(null, true);
-      
+
       if (SERVER.API.ALLOWED_DOMAINS.includes(origin)) {
         return cb(null, true);
       }

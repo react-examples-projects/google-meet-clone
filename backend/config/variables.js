@@ -8,7 +8,7 @@ const SERVER = {
     ALLOWED_DOMAINS: [
       "http://localhost:3000",
       "http://localhost:5000",
-      "https://effortless-sopapillas-50dac6.netlify.app",
+      "https://google-meet-delta.vercel.app",
     ],
     RATE_LIMITS: {
       windowMs: 10 * 60 * 1000, // 10 minutes

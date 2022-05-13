@@ -1,5 +1,5 @@
 import { Input, Select, useToasts, Text } from "@geist-ui/core";
-import { useRoomContext } from "../context/RoomProvider"; 
+import { useRoomContext } from "../context/RoomProvider";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import { setVideoStream } from "../helpers/utils";
@@ -203,8 +203,12 @@ export default function MeetForm({ visibleModal }) {
       </div>
 
       <Text className="text-muted" small>
-        Recuerda seleccionar manualmente los dispotivios de cámara y fuente de
+        Debes seleccionar manualmente los dispotivios de cámara y fuente de
         audio para previsualizar su funcionamiento
+      </Text>
+      <Text className="text-muted d-block mt-1 fw-bold" small>
+        Recuerda proporcinar permisos de acceder a tus dispositivos de cámara
+        y audio.
       </Text>
     </form>
   );

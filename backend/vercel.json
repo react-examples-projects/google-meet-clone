@@ -12,7 +12,7 @@
       "dest": "/",
       "headers": {
         "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Origin": "https://effortless-sopapillas-50dac6.netlify.app",
+        "Access-Control-Allow-Origin": "https://google-meet-delta.vercel.app",
         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
       }
     }
