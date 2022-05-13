@@ -34,7 +34,7 @@ export default function useRoom() {
   const disconnect = () => {
     room.room?.disconnect();
     deleteSession();
-    window.location.href = "/meet";
+    window.location.href = "/";
   };
 
   return {

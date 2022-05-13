@@ -22,7 +22,7 @@ export default function NotFound() {
           La página o recurso que intentas acceder fue eliminado o no fue
           encontrado en nuestro servidores.
         </Text>
-        <Link to="/meet">
+        <Link to="/">
           <Button type="success">Ir al incio</Button>
         </Link>
       </div>

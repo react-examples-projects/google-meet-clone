@@ -34,7 +34,7 @@ export default function MeetError({ refetch }) {
         <Button onClick={refetch} type="success" className="me-2">
           Reconectar
         </Button>
-        <Link to="/meet">
+        <Link to="/">
           <Button>Ir al incio</Button>
         </Link>
       </div>

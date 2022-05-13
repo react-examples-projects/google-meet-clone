@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Register from "./pages/App";
 import Forms from "./pages/Forms";
 import Meet from "./pages/Meet";
 import Meeting from "./Components/Meeting";
@@ -11,8 +10,7 @@ export default function Routers() {
       <Routes>
         <Route path="/forms" element={<Forms />} />
         <Route path="/meeting" element={<Meeting />} />
-        <Route path="/meet" element={<Meet />} />
-        <Route path="/" element={<Register />} index />
+        <Route path="/" element={<Meet />} index />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

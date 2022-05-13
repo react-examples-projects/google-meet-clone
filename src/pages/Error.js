@@ -40,7 +40,7 @@ export default function Error() {
           >
             Refrescar
           </Button>
-          <Link to="/meet">
+          <Link to="/">
             <Button>Ir al incio</Button>
           </Link>
         </div>

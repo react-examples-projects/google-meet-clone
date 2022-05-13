@@ -14,7 +14,7 @@ export default function Meeting() {
   const { isLoading, isError, refetch } = useCreateRoom(identity, roomName);
 
   useEffect(() => {
-    if (!session) return navigate("/meet");
+    if (!session) return navigate("/");
     // if (!identity || !roomName) return navigate("/meet");
   }, [identity, roomName]);
 
