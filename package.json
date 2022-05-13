@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@geist-ui/core": "^2.3.8",
-    "@hookform/resolvers": "^2.8.8",
+    "@geist-ui/core": "2.3.8",
+    "@hookform/resolvers": "2.8.8",
     "axios": "0.27.2",
     "classnames": "2.3.1",
     "constate": "3.3.2",
@@ -14,7 +14,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.0.0",
     "react-error-boundary": "3.1.4",
-    "react-helmet": "^6.1.0",
+    "react-helmet": "6.1.0",
     "react-hook-form": "7.30.0",
     "react-icons": "4.3.1",
     "react-query": "3.38.1",
@@ -49,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "vercel": "24.2.2"
   }
 }

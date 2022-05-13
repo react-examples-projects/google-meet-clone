@@ -1,5 +1,5 @@
 import { useRoomContext } from "../context/RoomProvider";
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import { BiGroup } from "react-icons/bi";
 import { Button } from "@geist-ui/core";
 import UserParticipant from "./UserParticipant";
@@ -10,10 +10,10 @@ import useBody from "../hooks/useBody";
 import useToggle from "../hooks/useToggle";
 import ParticipantControls from "./ParticipantControls";
 import MeetInfo from "./MeetInfo";
-import { useState } from "react";
+import MetaTags from "./MetaTags";
 
 function VideoStreaming() {
-  const { room } = useRoomContext();
+  const { room, identity } = useRoomContext();
   const [isAudioReady, setAudioReady] = useState(false);
   const participant = room?.localParticipant;
   const [isVisible, toggleVisible] = useToggle();
@@ -44,30 +44,33 @@ function VideoStreaming() {
   }, [room]);
 
   return (
-    <div className={css.container}>
-      <div className={css.usersParticipantsWrapper}>
-        <UserParticipant participant={participant} />
-        <ParticipantControls
-          participant={participant}
-          isRemoteParticipant={false}
-        />
+    <>
+      <MetaTags title={`Estas en una sala como: ${identity}`} />
+      <div className={css.container}>
+        <div className={css.usersParticipantsWrapper}>
+          <UserParticipant participant={participant} />
+          <ParticipantControls
+            participant={participant}
+            isRemoteParticipant={false}
+          />
 
-        <Button
-          onClick={toggleVisible}
-          scale={1 / 2}
-          className={cls("p-1", css.btnGhost)}
-          style={{ position: "absolute", right: "1rem", bottom: "1rem" }}
-          iconRight={<BiGroup />}
-          auto
-        />
+          <Button
+            onClick={toggleVisible}
+            scale={1 / 2}
+            className={cls("p-1", css.btnGhost)}
+            style={{ position: "absolute", right: "1rem", bottom: "1rem" }}
+            iconRight={<BiGroup />}
+            auto
+          />
+        </div>
+
+        <MeetInfo />
+
+        <UsersParticipants {...{ isVisible, toggleVisible }} />
+
+        {room && isAudioReady && <audio src="./meet_ready.mp3" autoPlay />}
       </div>
-
-      <MeetInfo />
-
-      <UsersParticipants {...{ isVisible, toggleVisible }} />
-
-      {room && isAudioReady && <audio src="./meet_ready.mp3" autoPlay />}
-    </div>
+    </>
   );
 }
 
